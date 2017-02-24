@@ -1,0 +1,90 @@
+# 
+# These are the required libraries. Without them, WebLab-Deusto
+# will not work.
+# 
+
+# 
+# sqlalchemy manages the database, both for management (users, groups, 
+# permissions, storage) and for scheduling if redis is not used. It can
+# rely on sqlite or server-based databases such as MySQL.
+# 
+# While it does not strictly require anything to be installed, the Python
+# includes are highly recommended to compile the speedups. So in Ubuntu
+# install:   
+# 
+#     sudo apt-get install build-essential python-dev
+# 
+
+# We use 0.8.100 to avoid the 0.9.0betas (which are < 0.8)
+SQLAlchemy<0.8.100,>0.8.0
+
+# Flask is used for every HTTP/XML-RPC communication
+Flask==0.10.1
+
+# Flask-SQLAlchemy is used for all the databases
+Flask-SQLAlchemy==2.0
+
+# Flask-Upload is used in wcloud. In the near future, the admin panel should support changing the logo
+Flask-Uploads==0.1.3
+Flask-Assets==0.12
+cssmin==0.2.0
+
+#
+# Limit the version of Flask-WTF to lower than 0.9. There are some
+# WebLab incompatibility issues with higher versions.
+#
+Flask-WTF==0.9.4
+WTForms<2.0
+
+# 
+# Flask_admin is used for the new administration panel
+# 
+Flask-Admin==1.2.0
+
+# 
+# alembic is used for upgrading the database from version to version
+# 
+alembic==0.8.3
+
+# 
+# networkx is used for generating communities and plagiarism detection
+# 
+networkx==1.8.1
+
+#
+# Babel is used for flask internationalization.
+#
+Babel==1.3
+Flask-BabelEx==0.9.1
+
+# 
+# PyYAML is used for parsing the main configuration file
+# 
+PyYAML==3.11
+
+# 
+# requests is used in all the HTTP communications as a client
+# (both internal communications and external to federated environments)
+# 
+requests==2.5.1
+
+#
+# six is used for starting to support compatibility with Python 3
+# 
+six==1.9.0
+
+# celery is right now used in wcloud. In the near future, it will be a core
+# component in WebLab-Deusto
+# celery==3.1.17
+
+# geoip2 is used for retrieving information about the user IP address
+geoip2==2.1.0
+# This is recommended:
+# apt-get install libmaxminddb-dev
+maxminddb==1.2.0
+
+# Flask-DebugToolbar helps the development
+Flask-DebugToolbar==0.10.0
+
+# For utilities
+python-dateutil==2.5.2

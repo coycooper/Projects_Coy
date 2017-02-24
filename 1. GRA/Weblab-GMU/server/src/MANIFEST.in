@@ -1,0 +1,17 @@
+recursive-include weblab/core/templates *
+recursive-include weblab/core/translations *
+recursive-include weblab/admin/web/static *
+recursive-include voodoo/gen/templates *
+recursive-include weblab/admin *
+recursive-include weblab/admin/config_templates *
+recursive-include weblab/db/upgrade/scheduling *
+recursive-include weblab/db/upgrade/regular *
+recursive-include weblab *
+recursive-include experiments *
+recursive-include experiments/xilinxc/files *
+recursive-include experiments/xilinxc/files/xst/projnav.tmp *
+recursive-include experiments/ud_demo_xilinx *
+recursive-include experiments/binary *
+recursive-include experiments/labview/fpga_programmer *
+recursive-include experiments/logic *
+recursive-include experiments/ud_pic18 *

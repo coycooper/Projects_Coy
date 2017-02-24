@@ -1,0 +1,42 @@
+{% extends "webclient/_base.html" %}
+{% block body %}
+    {% if not federated_mode %}
+    <div class="container-fluid" id="loggedin-container" style="margin-bottom: 10px">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-0">
+                <a href="{{ weblab_api.config.client["host.entity.link"] }}">
+                    <img class="wl-logo" id="logo" src="{{ url_for("core_web.logo") }}"/>
+                </a>
+            </div>
+
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+                <div style="margin-top: 1em"></div>
+            </div>
+
+            {% if weblab_api.current_user %}
+            <div class="col-xs-12 col-sm-9 pull-right" style="text-align: right">
+                <!-- pull-right not used because we're just aligning right -->
+                <p style="white-space: nowrap"> <!-- The nowrap is so that the log-out doesnt get a line-break -->
+
+                    <!-- Duplicated height and width in style and tag to avoid problems in IE10 -->
+                    <a href="{{ url_for('profile.index') }}"><img style="display:inline-block; height: 30px; width: 30px"
+                                                              class="img-responsive img-rounded"
+                                                              src="{{ weblab_api.gravatar_url }}" height="30px" width="30px"/></a>
+                    <a href="{{ url_for('profile.index') }}">{{ weblab_api.current_user.full_name }}</a>{% if weblab_api.is_admin %} | <a
+                            href="{{ url_for("admin.index") }}"><img
+                            src="{{ url_for(".static", filename="img/ui/administration.png") }}"/></a>{% endif %}{% if weblab_api.is_instructor %} | <a
+                            href="{{ url_for("instructor.index") }}"><img
+                            src="{{ url_for(".static", filename="img/ui/instructor.png") }}"/></a>{% endif %} | <a
+                            href="{{ url_for("profile.index") }}"><img
+                            src="{{ url_for(".static", filename="img/ui/profile.png") }}"/></a> | <a id="logout"
+                            href="{{ url_for(".logout") }}">{{ gettext("Log out") }}</a>
+
+                </p>
+            </div>
+            {% endif %}
+        </div>
+        <!-- !row -->
+    </div>
+    {% endif %}
+    {{ messages() }}
+{% endblock %}

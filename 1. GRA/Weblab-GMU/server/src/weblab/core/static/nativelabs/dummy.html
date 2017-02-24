@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    The purpose of this lab is simply show how the WebLab-Deusto API can be used
+    from JavaScript. This version only uses JavaScript and jQuery. There is another
+    version using angular.js, which is a great tool for developing HTML5 apps.
+    -->
+    <meta charset="UTF-8">
+
+    <title>Dummy Experiment</title>
+
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <style>
+        /* We'll use this class to hide some contents */
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <!-- Include the scripts: standard jQuery + weblab.v1.js -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../weblabjs/weblab.v1.js"></script>
+    <script type="text/javascript">
+        // Typically instead of this dummy library, it should be used something like 
+        // https://angular-translate.github.io/
+        // 
+        // This is not related with WebLab-Deusto at all. The only relevant here is that
+        // weblab.locale is the language (e.g., 'es' or 'en'). This variable is only available
+        // after configuration load (i.e., onConfigLoad).
+        var MESSAGES = {
+            "en" : {
+                "initial_message" : "Welcome to the experiment!!!",
+                "queue_message" : "We are showing this block when the user presses on reserve and until the user. You might want to show a carousel of pictures of the lab they will see or simply hide the initial block.",
+                "queue_header" : "Queue block"
+            },
+            "es" : {
+                "initial_message" : "Bienvenido al experimento!",
+            }
+        };
+
+        function getMessage(key) {
+            var languageMessages = MESSAGES[weblab.locale]
+            if (languageMessages === undefined || languageMessages[key] === undefined) {
+                message = MESSAGES["en"][key];
+                if (message === undefined) {
+                    message = "Message '" + key + "' not found";
+                } 
+            } else {
+                message = languageMessages[key];
+            }
+            return message;
+        };
+    </script>
+    <script type="text/javascript">
+        // 
+        // There is always a global object called "weblab". It expects you
+        // to interact with it by adding callbacks when things happen. It 
+        // will tell you events such as "a new user is using the lab", and
+        // provides tools such as "send this command to the lab". However,
+        // *none* of the methods below are required. If you do nothing, 
+        // everything will work, but of course, nothing will be displayed.
+        // 
+
+        // 
+        // onConfigLoad receives a function whenever the configuration 
+        // has been loaded. From this point (and not before), you may access
+        // "weblab.config", which is configured in the WebLab Admin Panel by
+        // the administrator. Use it for particular parameters that the 
+        // teacher/admin might want to customize without writing code, 
+        // such as a message to be displayed, a restriction on what the lab
+        // does, certain adaptations, etc.
+        // 
+        weblab.onConfigLoad(function () {
+            // If you want to see in the web browser console the exchanged messages, 
+            // just set debug to true:
+            weblab.debug = true;
+
+            // You can set weblab.debug_poll to true if you want to see all the 
+            // messages submitted to the server, but it's mainly noise.
+            // weblab.debug_poll = true
+
+            // Show some text
+            $("#initial_message").text(getMessage("initial_message"));
+            // weblab.config is a simple JavaScript object (e.g., {})
+            var message = weblab.config['message'];
+            if (message !== undefined) {
+                $("#welcome_message").text(message);
+            }
+        });
+
+        // 
+        // While the laboratory is loading, a "Loading" message is displayed.
+        // This message, by default, is removed once the experiment loads the 
+        // configuration (which is managed internally). If there are critic 
+        // resources that need to be loaded (e.g., config files, external 
+        // resources, exiting frameworks, etc.) prior to showing the lab to 
+        // the final user (and letting the user to start the reservation), 
+        // you need to create a jQuery Deferred object and provide it as an
+        // argument to weblab.setExperimentLoadedPromise() as follows. Then
+        // you can call the .done or .fail method later on, and the "Loading"
+        // screen will be removed once the method is called and the basic
+        // weblab configuration is internally loaded.
+        // 
+        // var loadedCallback = $.Deferred();
+        // weblab.setExperimentLoadedPromise(loadedCallback.promise());
+        // (Later on:) loadedCallback.done();
+
+        // 
+        // setOnGetInitialDataCallback is provided only if there are some
+        // parameters of the experiment that need to be established before 
+        // starting the interacction. The message must be a JavaScript Object.
+        // This method is only called once the reserve button has been 
+        // pressed. The information will be provided in JSON to the 
+        // start_experiment method in the server side, as client initial data.
+        // 
+        weblab.setOnGetInitialDataCallback(function () {
+            return {
+                message: $("#initial_input").val()
+            };
+        });
+
+
+        // 
+        // When the user attempts to reserve the laboratory, this method is 
+        // called. You might hide menus that you were previously showing, and
+        // even show something else (e.g., carousel or so). Take into account
+        // that whenever the experiment is assigned, the following method (start)
+        // will be called.
+        // 
+        weblab.onQueue(function () {
+            $("#initial_block").hide();
+            $("#queue_message").text(getMessage("queue_message"));
+            $("#queue_header").text(getMessage("queue_header"));
+            $("#queued_block").show();
+            $("#queued_block").removeClass("hidden");
+        });
+
+        //
+        // When it is confirmed by WebLab-Deusto that the current experiment
+        // has permission to use the laboratory, then this method is called.
+        // It provides two arguments: time (which is a float, representing the 
+        // number of seconds remaining in the current session) and 
+        // initialConfig, which is a String message provided by the experiment
+        // server. The format used is not defined, and it can be anything from
+        // a custom format (e.g., "webcamurl=http://...") to a XML or a JSON
+        // document. It is provided by the Experiment Server startExperiment 
+        // function, that you will have defined in the Experiment Server.
+        // 
+        // From this point, methods such as weblab.sendCommand() are available
+        // 
+        weblab.onStart(function (time, initialConfig) {
+            // onQueue is not always called. Therefore, make sure in onStart to clean the initial block, if any.
+            $("#initial_block").hide();
+            $("#queued_block").hide();
+            $("#main_block").show();
+            $("#main_block").removeClass("hidden");
+            $("#main_button").click( function() {
+                var command = $("#command_input").val();
+                // Under any situation, you might call finishExperiment to force the experiment to finish
+                // Take into account that you can also do this on the server side (which is safer).
+                if (command == "exit") {
+                    weblab.finishExperiment();
+                }
+
+                // When you want to send messages to the Experiment server, use
+                // the sendCommand method. It returns a jQuery Deferred object
+                weblab.sendCommand(command)
+                    .done(function (response) {
+                        // The response message is a regular string
+                        $("#response").text(response);
+                    })
+                    .fail(function (error) {
+                        $("#response").text("There was an error: " + error);
+                    });
+            });
+
+            // Send the file as soon as we can. This is a typical behaviour (e.g., 
+            // user selects a file and it is sent when the user can use it). 
+            // sendFile works like sendCommand, but the first argument must be a
+            // <input type="file"> object (or using jQuery). It also accepts a 
+            // string you might get (and will be treated by the server as if it
+            // was a file, store it in disk, and so on).
+            weblab.sendFile($("#initial_file"), "file.txt")
+                .done(function(response) {
+                    $("#fileResponse").text(response);
+                })
+                .fail(function (error) {
+                    console.log("File sent failed!", error);
+                    $("#fileResponse").text("FAILED: " + error);
+                });
+        });
+
+        //
+        // When it is requested by WebLab-Deusto that the current experiment
+        // has finished (e.g., the user clicked on the finish button, or the 
+        // time passed, or an administrator kicked out the user). In this
+        // method, the experiment developer should clean the resources (e.g., 
+        // stop performing periodic tasks such as requesting new images for 
+        // the camera and so on).
+        // 
+        weblab.onFinish(function () {
+            $("#main_block").hide();
+            $("#initial_block").show();
+        });
+        
+        
+        // 
+        // If your experiment needs to process some data AFTER the end of the 
+        // experiment session, then use this method. It will be called once
+        // the experiment session is over, and it will wait for the results
+        // returned by the experiment session. Here, endData is provided by
+        // the dispose() method on the server side, and startData by the
+        // startExperiment(). Both data are provided just in case a batch
+        // laboratory approach is implemented. When using this method, calling
+        // Finish doesn't reload the page, but lets it show results.
+        // 
+        // weblab.onProcessResults(function (initialData, endData) {
+        //     
+        // });
+
+        // 
+        // If, for any reason, you would like to manage the polling by your 
+        // own (e.g., you redirect the user outside this environment with
+        // a proper and custom token or so), then you should call this method.
+        // This way, whenever you close the experiment window, the experiment 
+        // will not be automatically disconnected. It also requires you to 
+        // provide new configuration (search manages_polling) in the experiment
+        // specification
+        // 
+        // weblab.disableFinishOnClose();
+    </script>
+</head>
+<!-- -->
+<body>
+    <!-- 
+    For the sake of simplicity, we are going to load different blocks, most of 
+    which are hidden at the beginning. This means that only one block will be 
+    shown at a time, and from JavaScript we will choose which block. None of the
+    following names (e.g., initial_block, queued_block) are important for WebLab, 
+    they are used in the JavaScript code above (e.g., $("#initial_block").hide(); 
+    and so on).
+    -->
+    <div class="row">
+        <div class="container">
+            <div id="initial_block" class="text-center">
+                <h3 id="initial_message"></h3>
+                <p id="welcome_message"></p>
+                <input type="text" id="initial_input"></input>
+                <input type="file" id="initial_file"></input>
+            </div>
+
+            <div id="queued_block" class="hidden text-center">
+                <h3 id="queue_header"></h3>
+                <p id="queue_message"></p>
+            </div>
+
+            <div id="main_block" class="hidden text-center">
+                <h3>Main block</h3>
+                <input type="text" id="command_input" value="Sample command"><button class="btn btn-primary" id="main_button">Send this message (or type 'exit' to exit)</button>
+                <p>Experiment server response to command: <pre><span id="response"></span></pre></p>
+                <p>Experiment server response to file: <pre><span id="fileResponse"></span></pre></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

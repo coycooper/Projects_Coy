@@ -1,0 +1,60 @@
+<div class="col col-md-4 col-xs-6">
+    <div class="well" ng-class="{'my-component-state-good': totals['TOTAL'] == totals['OK'],
+    'my-component-state-bad': totals['TOTAL'] != totals['OK']}">
+        <legend>{{ componentid }}</legend>
+
+        <h4 class="border">{{ totals["OK"] }}<i class="fa fa-check"></i> out of {{ totals["TOTAL"] }}</h4>
+
+        <table class="table table-condensed my-component-table">
+
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                        Check description
+                    </th>
+                    <th>
+                        Completed
+                    </th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr ng-repeat="(elementid, element) in component | NonInternal">
+                    <td>
+                        <i ng-class="getIconForStatus(element.status)"></i>
+                    </td>
+                    <td style="min-width: 15px">
+                        <i ng-if="element.task_state == 'running'" class="fa fa-spinner fa-spin"></i>
+                    </td>
+                    <td>
+                        {{ element.text }}
+                    </td>
+                    <td class="my-component-date" ng-init="element.jsdate = dateStrToDate(element.date)">
+                        {{ element.jsdate | date:'dd-MM-yy hh:mm:ss' }}
+                        <br>
+                        <span am-time-ago="element.jsdate"></span>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <p>
+
+        </p>
+
+        <!--<p><i class="fa fa-check"/> First webcam is working</p>
+        <p style="background-color: #FFFFEE"><i class="fa fa-warning" style="color: orange"/> Second webcam is working</p>
+        <p><i class="fa fa-remove"/> Archimedes data makes sense</p>
+
+        <button class="btn btn-info">View history</button>
+        <button class="btn btn-warning">Run all</button>-->
+    </div>
+</div>

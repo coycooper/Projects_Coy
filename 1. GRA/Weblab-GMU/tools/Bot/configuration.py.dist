@@ -1,0 +1,72 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2005-2009 University of Deusto
+# All rights reserved.
+#
+# This software is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.
+#
+# This software consists of contributions made by many individuals, 
+# listed below:
+#
+# Author: Jaime Irurzun <jaime.irurzun@gmail.com>
+#         Pablo Orduña <pablo@ordunya.com>
+#
+
+import weblab.admin.bot.cfg_util as cfg_util
+
+VERBOSE             = False
+HOST                = "localhost"                       # WebLab's hostname
+USERNAME            = "admin"                           # WebLab's username to login
+PASSWORD            = "password"                        # WebLab user's password do login
+EXPERIMENT_NAME     = "dummy"                           # Experiment name to interact with
+CATEGORY_NAME       = "Dummy experiments"               # Experiment category name to interact with
+PROGRAM_FILE        = "this is the content of the file" # Program file to send
+
+ITERATIONS          = 5                                # Times to repeat each launch
+
+
+GENERATE_GRAPHICS   = True
+# MATPLOTLIB_BACKEND  = 'cairo.pdf'
+MATPLOTLIB_BACKEND  = 'Agg'
+STEP_DELAY          = 3
+
+SYSTEMS = {
+            "ord3p"         : "Intel(R) Core(TM)2 Duo CPU T7250  @ 2.00GHz; 3.5 GB RAM",
+        }
+SYSTEM = cfg_util.retrieve_system(SYSTEMS)
+
+REVISION = cfg_util.generate_revision()
+
+def generate_scenarios():
+
+    new_standard_bot_user = cfg_util.generate_new_standard_bot_user('http://%s' % HOST, USERNAME, PASSWORD, EXPERIMENT_NAME, CATEGORY_NAME, PROGRAM_FILE)
+
+    Scenario = cfg_util.create_new_scenario()
+
+    scenarios = []
+    for protocol in cfg_util.get_supported_protocols():
+        for number in range(1, 5):
+            scenarios.append(
+                    Scenario(
+                        cfg_util.new_bot_users(number, new_standard_bot_user, 0, STEP_DELAY, protocol),
+                        protocol, number
+                    )
+                )
+
+        for number in range(5, 151, 5):
+            scenarios.append(
+                    Scenario(
+                        cfg_util.new_bot_users(number, new_standard_bot_user, STEP_DELAY * (5 -1), STEP_DELAY, protocol),
+                        protocol, number
+                    )
+                )
+    return scenarios
+
+CONFIGURATIONS      = {
+                        "consumer/run.py" : generate_scenarios,
+                      }
+
+RUNNING_CONFIGURATION = "revision %s. %s iterations; step_delay: %s seconds;" % (REVISION, ITERATIONS, STEP_DELAY)
+

@@ -1,0 +1,136 @@
+{% extends 'weblab-master.html' %}
+{% block body %}
+
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+
+<h1>{{ gettext("Details") }}</h1>
+
+<table class="table table-bordered table-striped">
+    <tbody>
+
+        <tr>
+            <td><strong>{{ gettext("Login") }}</strong></td>
+            <td>{{ uue.user.login }} </td>
+        </tr>
+        {% if 'external_user' in properties %}
+        <tr>
+            <td><strong>{{ gettext("In the name of") }}</strong></td>
+            <td>{{ properties['external_user'] }} {% if 'user_fullname' in properties %}({{ properties['user_fullname'] }}){% endif %}</td>
+        </tr>
+        {% endif %}
+        {% if 'group_id' in properties %}
+        <tr>
+            <td><strong>{{ gettext("As part of group") }}</strong></td>
+            <td>{{ properties['group_id'] }} {% if 'group_name' in properties %}({{ properties['group_name'] }}){% endif %}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td><strong>{{ gettext("Full name") }}</strong></td>
+            <td>{{ uue.user.full_name }} </td>
+        </tr>
+        <tr>
+            <td><strong>{{ gettext("Experiment") }}</strong></td>
+            <td>{{ uue.experiment }} </td>
+        </tr>
+        <tr>
+            <td><strong>{{ gettext("Start date") }}</strong></td>
+            <td>{{ display_date(uue.start_date) }} </td>
+        </tr>
+        <tr>
+            <td><strong>{{ gettext("End date") }}</strong></td>
+            <td>{{ display_date(uue.end_date) }} </td>
+        </tr>
+        {% if 'from_direct_ip' in properties and properties['from_direct_ip'] != uue.origin %}
+        <tr>
+            <td><strong>{{ gettext("Federated server") }}</strong></td>
+            <td>{{ uue.origin or 'Not stored' }} </td>
+        </tr>
+        <tr>
+            <td><strong>{{ gettext("User origin") }}</strong></td>
+            <td>{{ properties['from_direct_ip'] }} </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td><strong>{{ gettext("Origin") }}</strong></td>
+            <td>{{ uue.origin or 'Not stored' }} </td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td><strong>{{ gettext("Device") }}</strong></td>
+            <td>{{ uue.coord_address }} </td>
+        </tr>
+        {% if 'user_agent' in properties %}
+        <tr>
+            <td><strong>{{ gettext("Web browser") }}</strong></td>
+            <td>{{ properties['user_agent'] }} </td>
+        </tr>
+        {% endif %}
+
+        {% if 'mobile' in properties %}
+        <tr>
+            <td><strong>{{ gettext("Mobile") }}</strong></td>
+            <td>{{ properties['mobile'] }} </td>
+        </tr>
+        {% endif %}
+        {% if 'facebook' in properties %}
+        <tr>
+            <td><strong>{{ gettext("Facebook") }}</strong></td>
+            <td>{{ properties['facebook'] }} </td>
+        </tr>
+        {% endif %}
+        {% if 'locale' in properties %}
+        <tr>
+            <td><strong>{{ gettext("Language") }}</strong></td>
+            <td>{{ properties['locale'] or 'en' }} </td>
+        </tr>
+        {% endif %}
+        {% if properties.get('referer','') %}
+        <tr>
+            <td><strong>{{ gettext("Referer") }}</strong></td>
+            <td>{{ properties['referer'] }} </td>
+        </tr>
+        {% endif %}
+        {% if 'route' in properties %}
+        <tr>
+            <td><strong>{{ gettext("Server") }}</strong></td>
+            <td>{{ properties['route'] }} </td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td><strong>{{ gettext("Reservation identifier") }}</strong></td>
+            <td>{{ uue.reservation_id }} </td>
+        </tr>
+        <tr>
+            <td><strong>{{ gettext("Country") }}</strong></td>
+            <td>{{ uue.country or gettext("country not available") }} </td>
+        </tr>
+        <tr>
+            <td><strong>{{ gettext("City") }}</strong></td>
+            <td>{{ uue.city or gettext("city not available") }} </td>
+        </tr>
+        {% if 'permission_scope' in properties and 'permission_id' in properties %}
+        <tr>
+            <td><strong>{{ gettext("Permission") }}</strong></td>
+            <td>
+            {% if properties['permission_scope'] == 'user' %}
+                <a href="{{ url_for('permissions/user.edit_view', id = properties['permission_id']) }}">{{ gettext("View") }}</a>
+            {% elif properties['permission_scope'] == 'group' %}
+                <a href="{{ url_for('permissions/group.edit_view', id = properties['permission_id']) }}">{{ gettext("View") }}</a>
+            {% elif properties['permission_scope'] == 'role' %}
+                <a href="{{ url_for('permissions/role.edit_view', id = properties['permission_id']) }}">{{ gettext("View") }}</a>
+            {% else %}
+                <i>{{ gettext("Not available") }}</i>
+            {% endif %}
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<a class="btn btn-default" href="{{ url_for('.interactions', id = uue.id) }}">{{ gettext("Commands and files sent") }}</a>.
+</div>
+</div>
+
+{% endblock %}

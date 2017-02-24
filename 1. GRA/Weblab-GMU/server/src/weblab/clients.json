@@ -1,0 +1,754 @@
+{
+    "blank": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "html": {
+                "type": "string", 
+                "description": "HTML contents"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }
+        }
+    }, 
+    "blank-no-mobile": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "html": {
+                "type": "string", 
+                "description": "HTML contents"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }
+        }
+    }, 
+    "blank-limited-mobile": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "html": {
+                "type": "string", 
+                "description": "HTML contents"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }
+        }
+    }, 
+    "redirect": {
+        "parameters": {
+            "external.width": {
+                "type": "string", 
+                "description": "If popup or iframe,  width"
+            }, 
+            "external.height": {
+                "type": "string", 
+                "description": "If popup or iframe,  height"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "link.presentation": {
+                "type": "string", 
+                "description": "Link presentation (redirection, iframe, popup)"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "js": {
+        "parameters": {
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "page.footer": {
+                "type": "string", 
+                "description": "Footer of the application (below the application loaded, defaultValue)"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "provide.file.upload": {
+                "type": "bool", 
+                "description": "Provide upload file"
+            }, 
+            "message": {
+                "type": "string", 
+                "description": "Message to be displayed"
+            }, 
+            "html.file": {
+                "type": "string", 
+                "description": "HTML file"
+            }, 
+            "cssHeight": {
+                "type": "string", 
+                "description": "CSS height"
+            }, 
+            "builtin": {
+                "type": "bool", 
+                "description": "If active, it means that it comes with WebLab-Deusto; otherwise it takes the HTML file from the 'pub' directory"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "cssWidth": {
+                "type": "string", 
+                "description": "CSS width"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "visir": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "flash": {
+        "parameters": {
+            "swf.file": {
+                "type": "string", 
+                "description": "SWF file"
+            }, 
+            "flash.timeout": {
+                "type": "integer", 
+                "description": "Time given for Flash to load"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "height": {
+                "type": "integer", 
+                "description": "Application height"
+            }, 
+            "width": {
+                "type": "integer", 
+                "description": "Application width"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "message": {
+                "type": "string", 
+                "description": "Message to be displayed"
+            }, 
+            "page.footer": {
+                "type": "string", 
+                "description": "Footer of the application (below the application loaded, defaultValue)"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "java": {
+        "parameters": {
+            "code": {
+                "type": "string", 
+                "description": "The applet class"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "jar.file": {
+                "type": "string", 
+                "description": "The jar file URL"
+            }, 
+            "height": {
+                "type": "integer", 
+                "description": "Application height"
+            }, 
+            "width": {
+                "type": "integer", 
+                "description": "Application width"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "message": {
+                "type": "string", 
+                "description": "Message to be displayed"
+            }, 
+            "page.footer": {
+                "type": "string", 
+                "description": "Footer of the application (below the application loaded, defaultValue)"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "xilinx": {
+        "parameters": {
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "is.demo": {
+                "type": "bool", 
+                "description": "Is a demo?"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "is.multiresource.demo": {
+                "type": "bool", 
+                "description": "Is a multiresource demo?"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "dummy": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "dummybatch": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "vm": {
+        "parameters": {
+            "vnc.width": {
+                "type": "string", 
+                "description": "Width of the VNC applet"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "labview": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "send.file": {
+                "type": "bool", 
+                "description": "Send file or not"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "logic": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "binary": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "gpib": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "gpib1": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "gpib2": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "pic18": {
+        "parameters": {
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "is.demo": {
+                "type": "bool", 
+                "description": "Is a demo?"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "robot-standard": {
+        "parameters": {
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "robot-movement": {
+        "parameters": {
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "robot-proglist": {
+        "parameters": {
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "robotarm": {
+        "parameters": {
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "submarine": {
+        "parameters": {
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "ilab-batch": {
+        "parameters": {
+            "code": {
+                "type": "string", 
+                "description": "iLab class file"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "service_broker": {
+                "type": "string", 
+                "description": "iLab Service Broker relative URL"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "archive": {
+                "type": "string", 
+                "description": "iLab archive file"
+            }, 
+            "lab_server_id": {
+                "type": "string", 
+                "description": "iLab lab server id"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "unr-physics": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "incubator": {
+        "parameters": {
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "aquarium": {
+        "parameters": {
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }, 
+    "robot-maze": {
+        "parameters": {
+            "webcam.refresh.millis": {
+                "type": "integer", 
+                "description": "Time to refresh the webcam image,  in milliseconds"
+            }, 
+            "experiment.info.description": {
+                "type": "string", 
+                "description": "Description message"
+            }, 
+            "experiment.info.link": {
+                "type": "string", 
+                "description": "Link to point in the information"
+            }, 
+            "experiment.reserve.button.shown": {
+                "type": "bool", 
+                "description": "Show the reserve button or not"
+            }, 
+            "experiment.picture": {
+                "type": "string", 
+                "description": "Path to the experiment pictures"
+            }
+        }
+    }
+}

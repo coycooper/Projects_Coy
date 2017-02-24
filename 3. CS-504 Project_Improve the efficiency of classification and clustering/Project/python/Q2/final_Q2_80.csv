@@ -1,0 +1,3 @@
+userID,movieID,realRating,predictedRating
+1,1061,3,-0.64685919918
+1,1129,2,0.0498324886826

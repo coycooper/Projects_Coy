@@ -1,0 +1,98 @@
+{# TODO: reuse as a Weblab widget, with the others #}
+
+{# Macros to generate the file upload controls #}
+
+
+
+{% macro scripts() %}
+    {% assets filters="rjsmin", output="gen/webclient_upload_vendor.min.js",
+                "jQuery-File-Upload-9.8.0/js/vendor/jquery.ui.widget.js",
+                "jQuery-File-Upload-9.8.0/js/jquery.iframe-transport.js",
+                "jQuery-File-Upload-9.8.0/js/jquery.fileupload.js" %}
+    <script src="{{ ASSET_URL }}"></script>{% 
+    endassets %}
+{% endmacro %}
+
+{% macro styles() %}
+    {% assets filters="cssmin", output="gen/webclient_upload_vendor.min.css", 
+                "jQuery-File-Upload-9.8.0/css/jquery.fileupload.css", 
+                "jQuery-File-Upload-9.8.0/css/jquery.fileupload-ui.css" %}
+    <link href="{{ ASSET_URL }}" rel="stylesheet"/>
+    {% endassets %}
+{% endmacro %}
+
+{% macro code(upload_url) %}
+    <script>
+        /*jslint unparam: true */
+        /*global window, $ */
+        $(function () {
+            'use strict';
+
+            var url = "{{ upload_url }}";
+
+            $('#fileupload').fileupload({
+                url: url,
+                dataType: 'json',
+
+                // Callback meant to start the upload.
+                add: function (e, data) {
+                    setTimeout(function(){
+                        console.log(data);
+                        data.submit();
+                    }, 1000)
+                },
+                done: function (e, data) {
+                    $.each(data.result.files, function (index, file) {
+                        $('<p/>').text(file.name).appendTo('#files');
+                    });
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .progress-bar').css(
+                            'width',
+                                    progress + '%'
+                    );
+                }
+            }).prop('disabled', !$.support.fileInput)
+                    .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        });
+    </script>
+{% endmacro %}
+
+{% macro content() %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        {{ gettext("File to Upload") }}
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <blockquote>
+                        <p>
+                            {{ gettext("Please, drag & drop here the file that you want to upload for the experiment.
+                            Alternatively, you can click on the button and select the file manually.") }}
+                        </p>
+                    </blockquote>
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+
+                    <div class="btn btn-success fileinput-button" style="margin-bottom: 15px">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>{{ gettext("Select file...") }}</span>
+                        <!-- The file input field used as target for the file upload widget -->
+                        <input id="fileupload" type="file" name="files[]" multiple>
+                    </div>
+
+                    <!-- The global progress bar -->
+                    <div id="progress" class="progress">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                    <!-- The container for the uploaded files -->
+                    <div id="files" class="files"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endmacro %}

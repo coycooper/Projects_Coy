@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//experiments/managed/libs/server/python/weblab_server.py=utf-8
+encoding//server/src/develop.py=utf-8
+encoding//server/src/experiments/robot_movement.py=utf-8
+encoding//server/src/setup.py=utf-8
+encoding//server/src/test/integration/general/test_multiple_users.py=utf-8
+encoding//server/src/test/unit/experiments/archimedes/test_archimedes.py=utf-8
+encoding//server/src/voodoo/override.py=utf-8
+encoding//server/src/weblab/admin/weblab-admin=utf-8
+encoding//server/src/weblab/admin/weblab-admin.py=utf-8
+encoding//server/src/weblab/admin/weblab-bot=utf-8
+encoding//server/src/weblab/admin/weblab-bot.py=utf-8
+encoding//server/src/weblab/core/server.py=utf-8
+encoding//server/src/weblab/experiment/experiment.py=utf-8
